@@ -1,13 +1,14 @@
 class Track {
-  constructor(cars, width) {
+  constructor(amount, width) {
     canvas.onclick = () => {
       if (!this.completed) {
         track.inner.push(Track.inner);
         track.outer.push(Track.outer);
       }
     };
+    this.amount = amount;
     this.width = width || 120;
-    this.cars = cars || [];
+    this.cars = [];
     this.inner = [];
     this.outer = [];
     this.collisions = [];
@@ -27,7 +28,7 @@ class Track {
         else return b.distanceTravel - a.distanceTravel;
       });
 
-      this.push(100, this.eliminated[0]);
+      this.push(this.amount, this.eliminated[0]);
 
       this.eliminated = [];
     }
@@ -48,7 +49,7 @@ class Track {
   }
 
   debugCar() {
-    let car = new Car(Vector.middle(this.inner[0], this.outer[0]), Vector.angle(this.inner[0], this.outer[0]), obj => {
+    let car = new Car(Vector.middle(this.inner[0], this.outer[0]), Vector.angle(this.inner[0], this.outer[0]), (obj) => {
       if (key[87]) obj.forward();
       if (key[68]) obj.left();
       if (key[83]) obj.backward();

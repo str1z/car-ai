@@ -16,20 +16,21 @@ document.body.append(canvas);
 
 let key = {};
 
-window.onkeydown = e => {
+window.onkeydown = (e) => {
   if (e.keyCode != 122 && e.keyCode != 123) e.preventDefault();
   key[e.keyCode] = true;
 };
-window.onkeyup = e => {
+window.onkeyup = (e) => {
   key[e.keyCode] = false;
 };
 
 //track creation
 
-let track = new Track();
+let track = new Track(Number(prompt("How many cars?")), Number(prompt("What is the track width?")));
+alert("1) Place the tracks.\n2) Enter to start.\nWASD to control your car. \nSHIFT to brake and SPACE to boost.\nESC to kill current generation.");
 
 window.mouse = new Vector(0, 0);
-window.onmousemove = e => {
+window.onmousemove = (e) => {
   window.mouse = new Vector(e.clientX - canvas.width / 2, e.clientY - canvas.height / 2);
 };
 
